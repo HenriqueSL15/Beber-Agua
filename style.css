@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+.container{
+  position: absolute;
+  left: 35%;
+  top: 40%;
+}
+
+.button{
+  width: 150px;
+  height: 150px;
+  margin: 15px;
+}
+
+.drankWater{
+
+}
+
+.list{
+
+}
+
+.exit{
+  
+}
