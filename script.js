@@ -18,6 +18,9 @@ function verificarPassouDia(){
 
   if(segundos >= 60){
     minutos += 1;
+    if(minutos == 30 || minutos >= 59){
+
+    }
     segundos = 0;
   }
 
@@ -35,6 +38,10 @@ function verificarPassouDia(){
 
 function bebiAgua(){
   vezes += 1;
+}
+
+function tocarSom(){
+  
 }
 
 drankWater.addEventListener("click", function(){
