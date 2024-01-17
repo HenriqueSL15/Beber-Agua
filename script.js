@@ -37,7 +37,9 @@ function verificarPassouDia(){
       contagem += 1;
       if(contagem >= 2){
         lista.push(currentDate + " - NÃO Bebi Água")
+        contagem = 0;
         tocouSom = false
+        podeBeber = false;
       }
     }
     segundos = 0;
@@ -52,7 +54,7 @@ function verificarPassouDia(){
     horas = 1;
     minutos = 0;
   }
-  // console.log("Horas: " + horas + " / Minutos: " + minutos + "/ Segundos: " + segundos);
+  console.log("Horas: " + horas + " / Minutos: " + minutos + "/ Segundos: " + segundos);
 }
 
 function bebiAgua(){
@@ -73,7 +75,9 @@ drankWater.addEventListener("click", function(){
 })
 
 list.addEventListener("click", function(){
-  console.log(lista)
+  lista.forEach((elem, index) => {
+    console.log(lista[index])
+  })  
 })
 
 exit.addEventListener("click", function(){
