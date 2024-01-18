@@ -82,12 +82,14 @@ list.addEventListener("click", function(){
   // lista.forEach((elem, index) => {
   document.getElementById("listElement").innerHTML = lista.join('<br />')
   ativeiBotao = true;
+  document.getElementById("listElement").style.background = "rgba(221, 217, 195, 0.575)";
   // })  
 })
 
 exit.addEventListener("click", function(){
   document.getElementById("listElement").innerHTML = "";
   ativeiBotao = false;
+  document.getElementById("listElement").style.background = "none";
 })
 
 function loop(){
