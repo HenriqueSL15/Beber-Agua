@@ -3,11 +3,12 @@ const list = document.getElementById("list");
 const exit = document.getElementById("exit");
 
 const alarme = new Audio("/sons/sound1.wav")
-let currentDate = new Date();
-currentDate.toString();
+
+var currentDate = new Date();
 
 let lista = [];
 
+let ativeiBotao = false;
 let tocouSom = false;
 let podeBeber = false;
 
@@ -36,6 +37,7 @@ function verificarPassouDia(){
     if(tocouSom){
       contagem += 1;
       if(contagem >= 2){
+        var currentDate = new Date();
         lista.push(currentDate + " - NÃO Bebi Água")
         contagem = 0;
         tocouSom = false
@@ -54,10 +56,11 @@ function verificarPassouDia(){
     horas = 1;
     minutos = 0;
   }
-  console.log("Horas: " + horas + " / Minutos: " + minutos + "/ Segundos: " + segundos);
+  console.log("Hora(s): " + horas + " / Minuto(s): " + minutos + "/ Segundo(s): " + segundos);
 }
 
 function bebiAgua(){
+  var currentDate = new Date();
   lista.push(currentDate + " - Bebi Água")
   vezes += 1;
   podeBeber = false;
@@ -69,19 +72,22 @@ function tocarSom(){
 }
 
 drankWater.addEventListener("click", function(){
+  console.log(contagem)
   if(podeBeber){
     bebiAgua();
   }
 })
 
 list.addEventListener("click", function(){
-  lista.forEach((elem, index) => {
-    console.log(lista[index])
-  })  
+  // lista.forEach((elem, index) => {
+  document.getElementById("listElement").innerHTML = lista.join('<br />')
+  ativeiBotao = true;
+  // })  
 })
 
 exit.addEventListener("click", function(){
-  
+  document.getElementById("listElement").innerHTML = "";
+  ativeiBotao = false;
 })
 
 function loop(){
