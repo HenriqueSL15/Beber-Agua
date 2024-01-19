@@ -40,7 +40,7 @@ function verificarPassouDia(){
         var currentDate = new Date();
         lista.push(currentDate + " - NÃO Bebi Água")
         contagem = 0;
-        tocouSom = false
+        tocouSom = false;
         podeBeber = false;
       }
     }
@@ -75,6 +75,7 @@ drankWater.addEventListener("click", function(){
   console.log(contagem)
   if(podeBeber){
     bebiAgua();
+    contagem = 0;
   }
 })
 

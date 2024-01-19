@@ -24,17 +24,13 @@
   background-color: lightblue; 
 }
 
-.showColor{
-  transition: opacity 0.5s;
-}
-
 #listElement{
   width: 700px;
   position: relative;
   left:-10%;
   font-family: 'Poppins';
   padding: 15px;
-  background-color: rgba(221, 217, 195, 0.575);
+  background-color: none;
   border-radius: 25px;
 }
 
