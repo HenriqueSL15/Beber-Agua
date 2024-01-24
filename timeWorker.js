@@ -6,7 +6,7 @@ function startLoop() {
     counterObject.counter++;
     // console.log('TimerWorker.js:' + counterObject.counter)
     postMessage(counterObject.counter);
-  }, 500); // Update counter every second
+  }, 1000); // Update counter every second
 }
 
 startLoop();
