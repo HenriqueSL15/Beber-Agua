@@ -17,7 +17,7 @@
   border-radius: 25px;
   border: none;
   background-color: rgba(221, 217, 195, 0.575);
-  transition: background-color 0.5s;
+  transition: background-color 0.3s;
 }
 
 .button:hover{
@@ -26,6 +26,7 @@
 
 #listElement{
   width: 700px;
+  max-height: 1600px;
   position: relative;
   left:-10%;
   font-family: 'Poppins';

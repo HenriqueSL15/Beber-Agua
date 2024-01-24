@@ -1,101 +1,24 @@
-const drankWater = document.getElementById("drankWater");
-const list = document.getElementById("list");
-const exit = document.getElementById("exit");
+  import { pegarMinutos } from './utils.js';
+  import { pegarHoras } from './utils.js';
 
-const alarme = new Audio("/sons/sound1.wav")
+  let worker = new Worker('timeWorker.js');
+  let lastCounterValue = 0;
+  let minutos = 0;
+  let horas = 0;
 
-var currentDate = new Date();
-
-let lista = [];
-
-let ativeiBotao = false;
-let tocouSom = false;
-let podeBeber = false;
-
-let contagem = 0;
-
-let frames = 0;
-let segundos = 55;
-let minutos = 59;
-let horas = 0;
-
-let vezes = 0;
-function verificarPassouDia(){
-  if(frames >= 60){
-    segundos += 1;
-    frames = 0;
-  }
-
-  if(segundos >= 60){
-    minutos += 1;
-    if(minutos == 30 || minutos >= 59){
-      tocarSom();
-      tocouSom = true;
-      podeBeber = true;
+  // Listen for messages from the worker
+  worker.onmessage = function (event) {
+    // Do something with the counter value in the main thread
+    let counterValue = event.data;
+    if(counterValue - lastCounterValue === 60){
+      lastCounterValue+=60;
+      minutos+=1;
+      pegarMinutos(minutos);
     }
 
-    if(tocouSom){
-      contagem += 1;
-      if(contagem >= 2){
-        var currentDate = new Date();
-        lista.push(currentDate + " - NÃO Bebi Água")
-        contagem = 0;
-        tocouSom = false;
-        podeBeber = false;
-      }
+    if(minutos == 60){
+      minutos = 0;
+      horas+=1;
+      pegarHoras(horas);
     }
-    segundos = 0;
-  }
-
-  if(minutos >= 60){
-    horas += 1;
-    minutos = 0;
-  }
-
-  if(horas > 24){
-    horas = 1;
-    minutos = 0;
-  }
-  console.log("Hora(s): " + horas + " / Minuto(s): " + minutos + "/ Segundo(s): " + segundos);
-}
-
-function bebiAgua(){
-  var currentDate = new Date();
-  lista.push(currentDate + " - Bebi Água")
-  vezes += 1;
-  podeBeber = false;
-}
-
-function tocarSom(){
-  alarme.play();
-  tocouSom = false;
-}
-
-drankWater.addEventListener("click", function(){
-  console.log(contagem)
-  if(podeBeber){
-    bebiAgua();
-    contagem = 0;
-  }
-})
-
-list.addEventListener("click", function(){
-  // lista.forEach((elem, index) => {
-  document.getElementById("listElement").innerHTML = lista.join('<br />')
-  ativeiBotao = true;
-  document.getElementById("listElement").style.background = "rgba(221, 217, 195, 0.575)";
-  // })  
-})
-
-exit.addEventListener("click", function(){
-  document.getElementById("listElement").innerHTML = "";
-  ativeiBotao = false;
-  document.getElementById("listElement").style.background = "none";
-})
-
-function loop(){
-  verificarPassouDia(frames);
-  frames += 1;
-  requestAnimationFrame(loop);
-}
-loop();
+  };
