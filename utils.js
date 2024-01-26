@@ -1,10 +1,16 @@
-let minutos = 0;
 let horas = 0;
+let minutos = 0;
+let segundos = 0;
+
+let timer = document.getElementById("counter");
+
+export function pegarSegundos(data){
+  segundos = ("00" + data).slice(-2);
+  alterarTimer();
+}
 
 export function pegarMinutos(data) {
-  minutos = data;
-  console.log("Minutos: ", minutos);
-  console.log(contagem)
+  minutos = ("00" + data).slice(-2);
   verificarPassouTempo();
 }
 
@@ -18,8 +24,6 @@ let list = document.getElementById("list");
 let exit = document.getElementById("exit");
 
 let alarme = new Audio("/sons/sound1.wav")
-
-let currentDate = new Date();
 
 let lista = [];
 
@@ -49,6 +53,10 @@ exit.addEventListener("click", function(){
   ativeiBotao = false;
   document.getElementById("listElement").style.background = "none";
 });
+
+function alterarTimer(){
+  timer.innerHTML = `${minutos}:${segundos}`;
+}
 
 function bebiAgua(){
   var currentDate = new Date();
